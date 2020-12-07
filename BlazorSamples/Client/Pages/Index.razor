@@ -37,13 +37,13 @@ Welcome to your new app.
         await module.InvokeVoidAsync("outputLog", sample_list as IEnumerable<string>);
         // object (3) ["aaa", "bbb", "ccc"]
         // object (3) ["aaa", "bbb", "ccc"]
-        // object {1: "value1", 2: "value2", 3: "value3"}
 
         await module.InvokeVoidAsync("outputLog", new Dictionary<int, string>() {
             { 1, "value1" },
             { 2, "value2" },
             { 3, "value3" },
         });
+        // object {1: "value1", 2: "value2", 3: "value3"}
 
         (int, string) sample_tuple = (909, "sample");
         await module.InvokeVoidAsync("outputLog", sample_tuple);
