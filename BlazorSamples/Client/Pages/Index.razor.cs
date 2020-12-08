@@ -27,10 +27,10 @@ namespace BlazorSamples.Client.Pages
 
             await module.InvokeVoidAsync("outputLog", 123);
             await module.InvokeVoidAsync("outputLog", "123");
-            await module.InvokeVoidAsync("outputLog", "sample string");
+            await module.InvokeVoidAsync("outputLog", "foo");
             // number 123
             // string 123
-            // string sample string
+            // string foo
 
             var sample_list = new List<string>() { "aaa", "bbb", "ccc" };
             await module.InvokeVoidAsync("outputLog", sample_list);
@@ -44,6 +44,9 @@ namespace BlazorSamples.Client.Pages
                 { 3, "value3" },
             });
             // object {1: "value1", 2: "value2", 3: "value3"}
+
+            await module.InvokeVoidAsync("outputLog", new { item1 = "foo", item2 = "hoo", item3 = 123 });
+            // object {item1: "foo", item2: "hoo", item3: 123}
 
             (int, string) sample_tuple = (909, "sample");
             await module.InvokeVoidAsync("outputLog", sample_tuple);
