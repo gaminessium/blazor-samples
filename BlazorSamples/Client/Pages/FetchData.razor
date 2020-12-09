@@ -1,6 +1,7 @@
 ﻿@page "/fetchdata"
 @using BlazorSamples.Shared
 @inject HttpClient Http
+@inject IJSRuntime JSRuntime
 
 <h1>Weather forecast</h1>
 
@@ -12,6 +13,8 @@
 }
 else
 {
+    <canvas @ref="graphCanvas"></canvas>
+
     <table class="table">
         <thead>
             <tr>
@@ -38,9 +41,12 @@ else
 @code {
     private WeatherForecast[] forecasts;
 
+    private ElementReference graphCanvas;
+
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        CreateGraph(forecasts);
     }
 
 }
