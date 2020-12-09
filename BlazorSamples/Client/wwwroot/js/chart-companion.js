@@ -1,6 +1,6 @@
 ﻿class ColorPicker {
     static #colors = ['coral', 'lightgreen', 'skyblue', 'slateblue', 'gold'];
-    static #index = 0;
+    static #index = Math.floor(Math.random() * 10);
 
     static get nextColor() {
         const idx = this.#index++ % this.#colors.length;
