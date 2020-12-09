@@ -45,7 +45,9 @@ namespace BlazorSamples.Client.Pages
             });
             // object {1: "value1", 2: "value2", 3: "value3"}
 
-            await module.InvokeVoidAsync("outputLog", new { item1 = "foo", item2 = "hoo", item3 = 123 });
+            await module.InvokeVoidAsync("outputLog", new {
+                item1 = "foo", item2 = "hoo", item3 = 123
+            });
             // object {item1: "foo", item2: "hoo", item3: 123}
 
             (int, string) sample_tuple = (909, "sample");
