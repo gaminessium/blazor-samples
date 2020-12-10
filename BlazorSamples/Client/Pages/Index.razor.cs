@@ -15,7 +15,7 @@ namespace BlazorSamples.Client.Pages
             if (!firstRender) return;
 
             var module = await JSRuntime.InvokeAsync<IJSObjectReference>(
-                "import", "./js/interop_sample.js"
+                "import", "./js/interop-sample.js"
             );
 
             await module.InvokeVoidAsync("outputLog", null);
