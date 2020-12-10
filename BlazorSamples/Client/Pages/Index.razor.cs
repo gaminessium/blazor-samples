@@ -21,53 +21,65 @@ namespace BlazorSamples.Client.Pages
             await module.InvokeVoidAsync("outputLog", null);
             await module.InvokeVoidAsync("outputLog", true);
             await module.InvokeVoidAsync("outputLog", false);
-            // undefined undefined
-            // boolean true
-            // boolean false
+            // null は undefined へ、bool は boolean へそれぞれ変換される。
+            //   undefined undefined
+            //   boolean true
+            //   boolean false
 
             await module.InvokeVoidAsync("outputLog", 123);
             await module.InvokeVoidAsync("outputLog", "123");
             await module.InvokeVoidAsync("outputLog", "foo");
-            // number 123
-            // string 123
-            // string foo
+            // 数値を渡した場合は number へ、文字列を渡した場合は string へ変換される。
+            //   number 123
+            //   string 123
+            //   string foo
 
             var sampleList = new List<string>() { "aaa", "bbb", "ccc" };
             await module.InvokeVoidAsync("outputLog", sampleList);
             await module.InvokeVoidAsync("outputLog", sampleList as IEnumerable<string>);
-            // object (3) ["aaa", "bbb", "ccc"]
-            // object (3) ["aaa", "bbb", "ccc"]
+            // IEnumerable インターフェイスを備えた型であれば配列へ変換される。
+            //   object (3) ["aaa", "bbb", "ccc"]
+            //   object (3) ["aaa", "bbb", "ccc"]
 
             await module.InvokeVoidAsync("outputLog", new Dictionary<int, string>() {
                 { 1, "value1" },
                 { 2, "value2" },
                 { 3, "value3" },
             });
-            // object {1: "value1", 2: "value2", 3: "value3"}
+            // Dictionary は object へ変換される。
+            //   object {1: "value1", 2: "value2", 3: "value3"}
 
-            await module.InvokeVoidAsync("outputLog", new {
-                item1 = "foo", item2 = "hoo", item3 = 123
+            await module.InvokeVoidAsync("outputLog", new
+            {
+                item1 = "foo",
+                item2 = "hoo",
+                item3 = 123
             });
-            // object {item1: "foo", item2: "hoo", item3: 123}
+            // 匿名型も object へ変換される。
+            //   object {item1: "foo", item2: "hoo", item3: 123}
 
             (int, string) sampleTuple = (909, "sample");
             await module.InvokeVoidAsync("outputLog", sampleTuple);
             await module.InvokeVoidAsync("outputLog", sampleTuple.ToString());
-            // object {}
-            // string (909, sample)
+            // Tuple は変換を行えない。
+            //   object {}
+            //   string (909, sample)
 
             var sampleValueTuple = (x: 123, y: 456);
             await module.InvokeVoidAsync("outputLog", sampleValueTuple);
             await module.InvokeVoidAsync("outputLog", sampleValueTuple.ToString());
-            // object {}
-            // string (123, 456)
+            // ValueTuple も同様。
+            //   object {}
+            //   string (123, 456)
 
+            // enum MyEnum { Value1 = 7, Value2 = 5, Value3 = 6 }
             await module.InvokeVoidAsync("outputLog", MyEnum.Value1);
             await module.InvokeVoidAsync("outputLog", MyEnum.Value2);
             await module.InvokeVoidAsync("outputLog", MyEnum.Value3);
-            // number 7
-            // number 5
-            // number 6
+            // 列挙型のメンバーは、対応する整数値へ変換される。
+            //   number 7
+            //   number 5
+            //   number 6
         }
     }
 }
