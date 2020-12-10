@@ -56,6 +56,12 @@ namespace BlazorSamples.Client.Pages
             // object {}
             // string (909, sample)
 
+            var sampleValueTuple = (x: 123, y: 456);
+            await module.InvokeVoidAsync("outputLog", sampleValueTuple);
+            await module.InvokeVoidAsync("outputLog", sampleValueTuple.ToString());
+            // object {}
+            // string (123, 456)
+
             await module.InvokeVoidAsync("outputLog", MyEnum.Value1);
             await module.InvokeVoidAsync("outputLog", MyEnum.Value2);
             await module.InvokeVoidAsync("outputLog", MyEnum.Value3);
