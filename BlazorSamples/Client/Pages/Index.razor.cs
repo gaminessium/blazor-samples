@@ -32,9 +32,9 @@ namespace BlazorSamples.Client.Pages
             // string 123
             // string foo
 
-            var sample_list = new List<string>() { "aaa", "bbb", "ccc" };
-            await module.InvokeVoidAsync("outputLog", sample_list);
-            await module.InvokeVoidAsync("outputLog", sample_list as IEnumerable<string>);
+            var sampleList = new List<string>() { "aaa", "bbb", "ccc" };
+            await module.InvokeVoidAsync("outputLog", sampleList);
+            await module.InvokeVoidAsync("outputLog", sampleList as IEnumerable<string>);
             // object (3) ["aaa", "bbb", "ccc"]
             // object (3) ["aaa", "bbb", "ccc"]
 
@@ -50,9 +50,9 @@ namespace BlazorSamples.Client.Pages
             });
             // object {item1: "foo", item2: "hoo", item3: 123}
 
-            (int, string) sample_tuple = (909, "sample");
-            await module.InvokeVoidAsync("outputLog", sample_tuple);
-            await module.InvokeVoidAsync("outputLog", sample_tuple.ToString());
+            (int, string) sampleTuple = (909, "sample");
+            await module.InvokeVoidAsync("outputLog", sampleTuple);
+            await module.InvokeVoidAsync("outputLog", sampleTuple.ToString());
             // object {}
             // string (909, sample)
 
