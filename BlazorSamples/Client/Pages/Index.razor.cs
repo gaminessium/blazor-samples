@@ -58,19 +58,19 @@ namespace BlazorSamples.Client.Pages
             // 匿名型も object へ変換される。
             //   object {item1: "foo", item2: "hoo", item3: 123}
 
-            (int, string) sampleTuple = (909, "sample");
+            var sampleTuple = (909, 703);
             await module.InvokeVoidAsync("outputLog", sampleTuple);
             await module.InvokeVoidAsync("outputLog", sampleTuple.ToString());
             // Tuple は変換を行えない。
             //   object {}
-            //   string (909, sample)
+            //   string (909, 703)
 
-            var sampleValueTuple = (x: 123, y: 456);
+            var sampleValueTuple = (x: 123, y: "sample");
             await module.InvokeVoidAsync("outputLog", sampleValueTuple);
             await module.InvokeVoidAsync("outputLog", sampleValueTuple.ToString());
             // ValueTuple も同様。
             //   object {}
-            //   string (123, 456)
+            //   string (123, sample)
 
             // enum MyEnum { Value1 = 7, Value2 = 5, Value3 = 6 }
             await module.InvokeVoidAsync("outputLog", MyEnum.Value1);
