@@ -10,6 +10,14 @@ namespace BlazorSamples.Client.Pages
     {
         private enum MyEnum { Value1 = 7, Value2 = 5, Value3 = 6 }
 
+        class SampleClass
+        {
+            private string _X = "private field";
+            public string X = "public field";
+            private string _Y { get; set; } = "private property";
+            public string Y { get; set; } = "public property";
+        }
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (!firstRender) return;
@@ -49,6 +57,18 @@ namespace BlazorSamples.Client.Pages
             // IEnumerable インターフェイスを備えた型であれば配列へ変換される。
             //   object (3) ["aaa", "bbb", "ccc"]
             //   object (3) ["aaa", "bbb", "ccc"]
+
+            // class SampleClass
+            // {
+            //     private string _X = "private field";
+            //     public string X = "public field";
+            //     private string _Y { get; set; } = "private property";
+            //     public string Y { get; set; } = "public property";
+            // }
+            var sampleInstance = new SampleClass();
+            await module.InvokeVoidAsync("outputLog", sampleInstance);
+            // クラスインスタンスは public プロパティのみを含んだ object へ変換される。
+            //   object {y: "public property"}
 
             await module.InvokeVoidAsync("outputLog", new Dictionary<int, string>() {
                 { 1, "value1" },
