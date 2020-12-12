@@ -60,9 +60,9 @@ namespace BlazorSamples.Client.Pages
 
             await module.InvokeVoidAsync("outputLog", new
             {
-                item1 = "foo",
-                item2 = "hoo",
-                item3 = 123
+                Item1 = "foo",
+                Item2 = "hoo",
+                Item3 = 123
             });
             // 匿名型も object へ変換される。
             //   object {item1: "foo", item2: "hoo", item3: 123}
