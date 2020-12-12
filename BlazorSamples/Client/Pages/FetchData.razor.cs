@@ -23,6 +23,18 @@ namespace BlazorSamples.Client.Pages
             public IEnumerable<LineData> Datasets { get; set; }
         }
 
+        class ResponsiveOption
+        {
+            public bool Responsive { get; set; } = true;
+        }
+
+        class LineGraph
+        {
+            public string Type { get; } = "line";
+            public LineGraphData Data { get; set; }
+            public ResponsiveOption Options { get; set; } = new ResponsiveOption();
+        }
+
         protected async void CreateGraph(IReadOnlyCollection<WeatherForecast> forecasts)
         {
             var temparetures = new LineGraphData()
@@ -52,7 +64,7 @@ namespace BlazorSamples.Client.Pages
             await module.InvokeVoidAsync(
                 "createGraph",
                 graphCanvas,
-                temparetures
+                new LineGraph() { Data = temparetures }
             );
         }
     }

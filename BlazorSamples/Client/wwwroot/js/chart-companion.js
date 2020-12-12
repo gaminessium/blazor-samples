@@ -9,14 +9,8 @@
 }
 
 
-export function createGraph(context, lineGraphData) {
+export function createGraph(context, graph) {
     if (context.toString() !== '[object HTMLCanvasElement]') return
 
-    new Chart(context, {
-        type: 'line',
-        data: lineGraphData,
-        options: {
-            responsive: true,
-        }
-    });
+    new Chart(context, graph);
 }
