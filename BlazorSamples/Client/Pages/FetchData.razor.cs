@@ -13,6 +13,8 @@ namespace BlazorSamples.Client.Pages
         {
             public string Label { get; set; }
             public IEnumerable<int> Data { get; set; }
+            public double Tension { get; set; } = 0.5;
+            public string BorderColor { get; set; } = "red";
         }
 
         class LineGraphData
@@ -32,11 +34,13 @@ namespace BlazorSamples.Client.Pages
                     {
                         Label = "tempC",
                         Data = forecasts.Select(f => f.TemperatureC),
+                        BorderColor = "coral",
                     },
                     new LineData()
                     {
                         Label = "tempF",
                         Data = forecasts.Select(f => f.TemperatureF),
+                        BorderColor = "lightgreen",
                     }
                 }
             };

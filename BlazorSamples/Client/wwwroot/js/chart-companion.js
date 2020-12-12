@@ -9,24 +9,12 @@
 }
 
 
-export function createGraph(context, temparetures) {
+export function createGraph(context, lineGraphData) {
     if (context.toString() !== '[object HTMLCanvasElement]') return
-
-    const data = {
-        labels: temparetures.labels,
-        datasets: temparetures.datasets.map(d => (
-            {
-                label: d.label,
-                data: d.data,
-                tension: 0.5,
-                borderColor: ColorPicker.nextColor,
-            }
-        ))
-    };
 
     new Chart(context, {
         type: 'line',
-        data: data,
+        data: lineGraphData,
         options: {
             responsive: true,
         }
