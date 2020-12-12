@@ -9,16 +9,32 @@ namespace BlazorSamples.Client.Pages
 {
     public partial class FetchData
     {
+        class TemparatureData
+        {
+            public string Label { get; set; }
+            public IEnumerable<int> Data { get; set; }
+        }
+
+        class Temparatures
+        {
+            public IEnumerable<string> Labels { get; set; }
+            public IEnumerable<TemparatureData> Datasets { get; set; }
+        }
+
         protected async void CreateGraph(IReadOnlyCollection<WeatherForecast> forecasts)
         {
-            var temparetures = new {
+            var temparetures = new Temparatures()
+            {
                 Labels = forecasts.Select(f => f.Date.ToShortDateString()),
-                Datasets = new [] { 
-                    new {
+                Datasets = new List<TemparatureData>()
+                {
+                    new TemparatureData()
+                    {
                         Label = "tempC",
                         Data = forecasts.Select(f => f.TemperatureC),
                     },
-                    new {
+                    new TemparatureData()
+                    {
                         Label = "tempF",
                         Data = forecasts.Select(f => f.TemperatureF),
                     }
