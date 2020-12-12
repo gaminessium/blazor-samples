@@ -15,9 +15,11 @@
 
     private async void CreateGraph()
     {
+        if (Data is null) return;
+
         var module = await JSRuntime.InvokeAsync<IJSObjectReference>(
-            "import", "./js/chart-companion.js"
-        );
+        "import", "./js/chart-companion.js"
+    );
 
         await module.InvokeVoidAsync("createGraph", canvas, Data);
     }
@@ -26,10 +28,7 @@
     {
         if (firstRender)
         {
-            if (Data is not null)
-            {
-                CreateGraph();
-            }
+            CreateGraph();
         }
     }
 }
