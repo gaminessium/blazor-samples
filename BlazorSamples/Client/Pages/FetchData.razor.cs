@@ -9,31 +9,31 @@ namespace BlazorSamples.Client.Pages
 {
     public partial class FetchData
     {
-        class TemparatureData
+        class LineData
         {
             public string Label { get; set; }
             public IEnumerable<int> Data { get; set; }
         }
 
-        class Temparatures
+        class LineGraphData
         {
             public IEnumerable<string> Labels { get; set; }
-            public IEnumerable<TemparatureData> Datasets { get; set; }
+            public IEnumerable<LineData> Datasets { get; set; }
         }
 
         protected async void CreateGraph(IReadOnlyCollection<WeatherForecast> forecasts)
         {
-            var temparetures = new Temparatures()
+            var temparetures = new LineGraphData()
             {
                 Labels = forecasts.Select(f => f.Date.ToShortDateString()),
-                Datasets = new List<TemparatureData>()
+                Datasets = new List<LineData>()
                 {
-                    new TemparatureData()
+                    new LineData()
                     {
                         Label = "tempC",
                         Data = forecasts.Select(f => f.TemperatureC),
                     },
-                    new TemparatureData()
+                    new LineData()
                     {
                         Label = "tempF",
                         Data = forecasts.Select(f => f.TemperatureF),
