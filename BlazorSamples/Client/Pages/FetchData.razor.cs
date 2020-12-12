@@ -12,15 +12,15 @@ namespace BlazorSamples.Client.Pages
         protected async void CreateGraph(IReadOnlyCollection<WeatherForecast> forecasts)
         {
             var temparetures = new {
-                labels = forecasts.Select(f => f.Date.ToShortDateString()),
-                datasets = new [] { 
+                Labels = forecasts.Select(f => f.Date.ToShortDateString()),
+                Datasets = new [] { 
                     new {
-                        label = "tempC",
-                        data = forecasts.Select(f => f.TemperatureC),
+                        Label = "tempC",
+                        Data = forecasts.Select(f => f.TemperatureC),
                     },
                     new {
-                        label = "tempF",
-                        data = forecasts.Select(f => f.TemperatureF),
+                        Label = "tempF",
+                        Data = forecasts.Select(f => f.TemperatureF),
                     }
                 }
             };
