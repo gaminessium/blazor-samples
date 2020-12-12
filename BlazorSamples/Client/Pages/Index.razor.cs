@@ -34,6 +34,15 @@ namespace BlazorSamples.Client.Pages
             //   string 123
             //   string foo
 
+            // enum MyEnum { Value1 = 7, Value2 = 5, Value3 = 6 }
+            await module.InvokeVoidAsync("outputLog", MyEnum.Value1);
+            await module.InvokeVoidAsync("outputLog", MyEnum.Value2);
+            await module.InvokeVoidAsync("outputLog", MyEnum.Value3);
+            // 列挙型のメンバーは、対応する整数値へ変換される。
+            //   number 7
+            //   number 5
+            //   number 6
+
             var sampleList = new List<string>() { "aaa", "bbb", "ccc" };
             await module.InvokeVoidAsync("outputLog", sampleList);
             await module.InvokeVoidAsync("outputLog", sampleList as IEnumerable<string>);
@@ -71,15 +80,6 @@ namespace BlazorSamples.Client.Pages
             // ValueTuple も同様。
             //   object {}
             //   string (123, sample)
-
-            // enum MyEnum { Value1 = 7, Value2 = 5, Value3 = 6 }
-            await module.InvokeVoidAsync("outputLog", MyEnum.Value1);
-            await module.InvokeVoidAsync("outputLog", MyEnum.Value2);
-            await module.InvokeVoidAsync("outputLog", MyEnum.Value3);
-            // 列挙型のメンバーは、対応する整数値へ変換される。
-            //   number 7
-            //   number 5
-            //   number 6
         }
     }
 }
