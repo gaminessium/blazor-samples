@@ -1,7 +1,7 @@
 ﻿@page "/fetchdata"
 @using BlazorSamples.Shared
+@using static BlazorSamples.Client.Shared.GraphCanvas
 @inject HttpClient Http
-@inject IJSRuntime JSRuntime
 
 <h1>Weather forecast</h1>
 
@@ -13,7 +13,7 @@
 }
 else
 {
-    <canvas @ref="graphCanvas"></canvas>
+    <GraphCanvas Title="temparatures" Data="lineGraph" />
 
     <table class="table">
         <thead>
@@ -41,12 +41,32 @@ else
 @code {
     private WeatherForecast[] forecasts;
 
-    private ElementReference graphCanvas;
+    private LineGraph lineGraph;
 
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
-        CreateGraph(forecasts);
-    }
 
+        lineGraph = new LineGraph()
+        {
+            Data = new LineGraphData()
+            {
+                Labels = forecasts.Select(f => f.Date.ToShortDateString()),
+                Datasets = new List<LineData>() {
+                    new LineData()
+                    {
+                        Label = "tempC",
+                        Data = forecasts.Select(f => f.TemperatureC),
+                        BorderColor = "coral",
+                    },
+                    new LineData()
+                    {
+                        Label = "tempF",
+                        Data = forecasts.Select(f => f.TemperatureF),
+                        BorderColor = "lightgreen",
+                    }
+                }
+            }
+        };
+    }
 }

@@ -1,0 +1,35 @@
+﻿@inject IJSRuntime JSRuntime
+
+<div>
+    <canvas @ref="canvas" title="@Title"></canvas>
+</div>
+
+@code {
+    private ElementReference canvas;
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public LineGraph Data { get; set; }
+
+    private async void CreateGraph()
+    {
+        var module = await JSRuntime.InvokeAsync<IJSObjectReference>(
+            "import", "./js/chart-companion.js"
+        );
+
+        await module.InvokeVoidAsync("createGraph", canvas, Data);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (Data is not null)
+            {
+                CreateGraph();
+            }
+        }
+    }
+}
